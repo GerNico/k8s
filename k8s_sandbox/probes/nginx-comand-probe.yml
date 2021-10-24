@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-nginx
+  labels:
+    app: nginx
+    rel: stable
+spec:
+  containers:
+    - name: liveness
+      image: k8s.gcr.io/busybox
+      ports:
+        - containerPort: 8080
+
+
+args:
+  - /bin/sh
+  - -c
+  - touch /tmp/healthy; sleep 30;
+  rm -rf /tmp/healthy; sleep 600
+livenessProbe:
+exec:
+command:
+  - cat
+  - /tmp/healthy
+initialDelaySeconds: 5
+periodSeconds: 5
