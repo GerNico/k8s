@@ -68,7 +68,7 @@
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-allopen</artifactId>
-                        <version>${kotlin.version}</version>
+                        <version>${kotlin.ver2sion}</version>
                     </dependency>
                 </dependencies>
             </plugin>
