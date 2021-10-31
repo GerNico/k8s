@@ -1,0 +1,12 @@
+---
+version: '2'
+services:
+  ms-graph-kafka-connector:
+    image: shop:1.08
+    container_name: shop
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src/main/resources/application.yml:/application.yml
+
