@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  selector:
+    app: nginx
+#  type: cluster ip by default
+#  type: NodePort forward port of node
+#  type: LoadBalancer
+#  type: ExternalName
+#  externalName: api.acmecorp.com
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+#      nodePort: 31000

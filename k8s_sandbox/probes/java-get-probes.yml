@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-app
+  labels:
+    app: java-app
+    rel: stable
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: docker-desktop
+  containers:
+    - name: my-java
+      image: shop:1.08
+      ports:
+        - containerPort: 8080
+      env:
+        - name: JAVA_OPTS
+          value: "-XX:+UseSerialGC"
+      volumeMounts:
+        - mountPath: /application.yml
+          name: java-properties
+#      livenessProbe:
+#        httpGet: #check file on port
+#          path: /shop/health/livenessState
+#          port: 80
+#        initialDelaySeconds: 15 #initialy wait 15 seconds
+#        timeoutSeconds: 2 #timeout after 2 seconds
+#        periodSeconds: 5 #check every 5 seconds
+#        failureThreshold: 1 #allow 1 fail before failing pod
+  volumes:
+    - name: java-properties
+      hostPath:
+        path: E:/shop/shop/src/main/resources/application.yml
+        type: FileOrCreate
